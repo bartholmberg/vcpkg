@@ -11,7 +11,7 @@ endif (POLICY CMP0043)
 if (POLICY CMP0042)
     cmake_policy(SET CMP0042 OLD)
 endif (POLICY CMP0042)
-
+message(WARNING  "1  rtbm" )
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -25,12 +25,16 @@ find_package(catkin REQUIRED COMPONENTS
 # Optional components
 find_package(costmap_2d)
 find_package(octomap_msgs)
-find_package(apriltag_ros)
+#find_package(apriltag_ros)
 find_package(rviz)
-find_package(find_object_2d)
+find_package(zlib)
+#find_package(find_object_2d)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+
+message(WARNING  "1.4  rtbm  ==============>" )
+
 find_package(RTABMap 0.20.7 REQUIRED)
 
 find_package(OpenCV REQUIRED)
@@ -82,7 +86,7 @@ ENDIF(RTABMAP_GUI OR rviz_FOUND)
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
 catkin_python_setup()
-
+message(WARNING  "1.5  rtbm  ==============>" )
 #######################################
 ## Declare ROS messages and services ##
 #######################################
@@ -159,6 +163,9 @@ ENDIF(rviz_FOUND)
 IF(find_object_2d_FOUND)
    SET(optional_dependencies ${optional_dependencies} find_object_2d)
 ENDIF(find_object_2d_FOUND)
+IF(zlib_FOUND)
+   SET(optional_dependencies ${optional_dependencies} zlib)
+ENDIF(zlib_FOUND)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -609,7 +616,7 @@ IF(rviz_FOUND)
        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
     )
 ENDIF(rviz_FOUND)
-
+message(WARNING  "2  rtbm ${CATKIN_PACKAGE_SHARE_DESTINATION}" )
 IF(costmap_2d_FOUND)
     install(TARGETS 
        rtabmap_costmap_plugins
@@ -624,7 +631,7 @@ IF(costmap_2d_FOUND)
        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
     )
 ENDIF(costmap_2d_FOUND)
-
+message(WARNING  "3  rtbm" )
 #############
 ## Testing ##
 #############
