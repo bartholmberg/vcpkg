@@ -11,7 +11,7 @@ endif (POLICY CMP0043)
 if (POLICY CMP0042)
     cmake_policy(SET CMP0042 OLD)
 endif (POLICY CMP0042)
-message(WARNING  "1  rtbm" )
+message(STATUS  "1  rtbm" )
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -86,7 +86,8 @@ ENDIF(RTABMAP_GUI OR rviz_FOUND)
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
 catkin_python_setup()
-message(WARNING  "1.5  rtbm  ==============>" )
+message(STATUS  "1.5  rtbm  ==============>" )
+
 #######################################
 ## Declare ROS messages and services ##
 #######################################
@@ -199,7 +200,10 @@ SET(Libraries
    ${catkin_LIBRARIES}
    ${RTABMap_LIBRARIES}
 )
- 
+message(STATUS  "1.3   RTABLIBS  ${RTABMap_LIBRARIES}") 
+message(STATUS  "1.3   catkinlibs  ${catkin_LIBRARIES}") 
+message(STATUS  "1.3   pcllibs  ${PCL_LIBRARIES}") 
+message(STATUS  "1.3   opencvlibs  ${OpenCV_LIBRARIES}") 
 SET(rtabmap_sync_lib_src
    src/CommonDataSubscriber.cpp
    src/impl/CommonDataSubscriberDepth.cpp
@@ -273,10 +277,12 @@ MESSAGE(STATUS "WITH apriltag_ros")
 include_directories(
   ${apriltag_ros_INCLUDE_DIRS}
 )
+
 SET(Libraries
   ${apriltag_ros_LIBRARIES}
   ${Libraries}
 )
+
 ADD_DEFINITIONS("-DWITH_APRILTAG_ROS")
 ENDIF(apriltag_ros_FOUND)
 
